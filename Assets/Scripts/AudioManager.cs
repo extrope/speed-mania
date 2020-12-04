@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     private static readonly string FirstPlay = "FirstPlay";
     private static readonly string BackgroundPref = "BackgroundPref";
     private static readonly string SFXPref = "SFXPref";
-    private int firstPlayInt;
+    private int firstPlayInt = 0;
     public Slider backgroundSlider, sfxSlider;
     private float backgroundFloat, sfxFloat;
 
