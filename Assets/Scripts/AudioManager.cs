@@ -21,6 +21,9 @@ public class AudioManager : MonoBehaviour
 
         // First time setup for sound
         // Set sound to default settings
+         
+        //{
+        //if (PlayerPrefs.HasKey("SFXPref") || PlayerPrefs.HasKey("BackgroundPref"))
         if(firstPlayInt == 0)
         {
             // Set the values
@@ -36,20 +39,21 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetInt(FirstPlay, -1);
         }
         else
-        {
+        {            
             // Storing previous sound values and applying them to the current game
             backgroundFloat = PlayerPrefs.GetFloat(BackgroundPref);
             backgroundSlider.value = backgroundFloat;
-            
+
             sfxFloat = PlayerPrefs.GetFloat(SFXPref);
             sfxSlider.value = sfxFloat;
         }
     }
 
-    public void SaveSoundSettings()
+  /*  public void SaveSoundSettings()
     {
-        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
         PlayerPrefs.SetFloat(SFXPref, sfxSlider.value);
+        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
+   //    PlayerPrefs.SetFloat(SFXPref, sfxSlider.value);
     }
 
     // save game whenver focus is lost (i.e. minimising app, closing app, etc)
@@ -59,17 +63,24 @@ public class AudioManager : MonoBehaviour
         {
             SaveSoundSettings();
         }
-    }
+    }*/
 
     // Update volume of audio with new volume settings
     public void UpdateSound()
-    {
+    {        
         
-        backgroundAudio.volume = backgroundSlider.value;
+        backgroundAudio.volume = backgroundSlider.value;        
         // loop through list of audio samples and apply the new volume 
         for (int i = 0; i < sfxAudio.Length; i++)
         {
             sfxAudio[i].volume = sfxSlider.value;
         }
+        //sfxFloat = sfxSlider.value;
+        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
+        PlayerPrefs.SetFloat(SFXPref, sfxSlider.value);
+        /*Debug.Log("UPDATE SOUND:");
+        Debug.Log(sfxSlider.value);
+        Debug.Log("Background value:");
+        Debug.Log(backgroundSlider.value);*/
     }
 }

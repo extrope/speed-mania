@@ -30,15 +30,12 @@ public class SettingsMenu : MonoBehaviour
         // Check if any preferences have been saved
         if(PlayerPrefs.HasKey("QualityPref"))
         {
-            Debug.Log("NOT FIRST time Quality");
             qLevel = PlayerPrefs.GetInt("QualityPref");
-            Debug.Log(qLevel);
             QualitySettings.SetQualityLevel(qLevel);
             qualityDropdown.value = qLevel;
         }
         else 
         {
-            Debug.Log("First time Quality");
             qLevel = 0;
             QualitySettings.SetQualityLevel(qLevel);
             qualityDropdown.value = qLevel;                      
@@ -50,7 +47,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.ClearOptions();
         // Create list of strings with our options
         List<string> options = new List<string>();
-        Debug.Log(resolutions);
+        //Debug.Log(resolutions);
         //int currentResolutionIndex = 0;
         // loop through each resolution to create our option list
         for ( int i = 0; i < resolutions.Length; i++)
@@ -69,16 +66,12 @@ public class SettingsMenu : MonoBehaviour
         if(PlayerPrefs.HasKey("ResolutionPref"))
         {
             resolutionLevel = PlayerPrefs.GetInt("ResolutionPref");
-            Debug.Log("NOT FIRST time RESOLUTION:");
-            Debug.Log("resolutionLevel");
-            Debug.Log(resolutionLevel);
             Screen.SetResolution(resolutions[resolutionLevel].width, resolutions[resolutionLevel].height, true);
             resolutionDropdown.value = resolutionLevel;
             resolutionDropdown.RefreshShownValue();   
         }
         else
         {
-            Debug.Log("First time RESOLUTION");
             resolutionLevel = 0;
             resolutionDropdown.value = resolutionLevel;
             resolutionDropdown.RefreshShownValue();             
@@ -107,7 +100,5 @@ public class SettingsMenu : MonoBehaviour
         resolutionLevel = resolutionDropdown.value;
         Screen.SetResolution(resolutions[resolutionLevel].width, resolutions[resolutionLevel].height, true);
         PlayerPrefs.SetInt(ResolutionPref, resolutionDropdown.value);
-        Debug.Log("Set Resolution Event");
-        Debug.Log(resolutions[resolutionDropdown.value].width);
     }
 }
