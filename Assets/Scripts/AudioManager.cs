@@ -76,11 +76,16 @@ public class AudioManager : MonoBehaviour
             sfxAudio[i].volume = sfxSlider.value;
         }
         //sfxFloat = sfxSlider.value;
-        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
-        PlayerPrefs.SetFloat(SFXPref, sfxSlider.value);
+        
         /*Debug.Log("UPDATE SOUND:");
         Debug.Log(sfxSlider.value);
         Debug.Log("Background value:");
         Debug.Log(backgroundSlider.value);*/
+    }
+
+    public void SaveSoundSettings()
+    {
+        PlayerPrefs.SetFloat(BackgroundPref, backgroundSlider.value);
+        PlayerPrefs.SetFloat(SFXPref, sfxSlider.value);
     }
 }
