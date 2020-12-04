@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat(SFXPref, sfxFloat);
             // Change FirstPlay value, as player has played before
             PlayerPrefs.SetInt(FirstPlay, -1);
-            Debug.Log("FirstPlay");
         }
         else
         {
@@ -44,7 +43,6 @@ public class AudioManager : MonoBehaviour
             
             sfxFloat = PlayerPrefs.GetFloat(SFXPref);
             sfxSlider.value = sfxFloat;
-            Debug.Log("SecondPlay");
         }
     }
 
@@ -68,12 +66,10 @@ public class AudioManager : MonoBehaviour
     {
         
         backgroundAudio.volume = backgroundSlider.value;
-        Debug.Log("Background Update");
         // loop through list of audio samples and apply the new volume 
         for (int i = 0; i < sfxAudio.Length; i++)
         {
             sfxAudio[i].volume = sfxSlider.value;
-            Debug.Log("sfx Update");
         }
     }
 }
