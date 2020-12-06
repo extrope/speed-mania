@@ -5,20 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    /*
+    // Vehicle Selection
+    //public GameObject camera1;
+    //public GameObject camera2;
+    public GameObject GarageScene;
+    public GameObject MainMenuScene;
+    
     public void GoToGarage()
     {
-        SceneManager.LoadScene("Garage");
+
+        //camera2.SetActive(true);
+        //camera1.SetActive(false);
+        GarageScene.SetActive(true);        
+        MainMenuScene.SetActive(false);
+
     }
 
-    public void RacetrackSelection()
-    {
-        SceneManager.LoadScene("Racetracks");
-    }
-    */
     public void ExitTheGame()
     {
         Debug.Log("QUIT THE GAME");
         Application.Quit();
     }
+
+ 
 }
