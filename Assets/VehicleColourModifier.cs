@@ -32,7 +32,7 @@ public class VehicleColourModifier : MonoBehaviour
     {
 
         // Run if not first run through
-        if(PlayerPrefs.HasKey("VehicleBodyColourPref"))        
+        if(PlayerPrefs.HasKey(VehicleBodyColourPref))        
         {
             bodyPart = vehicleBody;
             Debug.Log("Not first time");
@@ -52,7 +52,7 @@ public class VehicleColourModifier : MonoBehaviour
         }
 
         // Run if first time customising Tire colour
-        if(PlayerPrefs.HasKey("VehicleTireColourPref"))
+        if(PlayerPrefs.HasKey(VehicleTireColourPref))
         {
             Debug.Log("FIRST RUN THROUGH");
             ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("VehicleTireColourPref"), out partColour);
@@ -62,7 +62,7 @@ public class VehicleColourModifier : MonoBehaviour
         }
 
         // Run if first time customising Spoiler colour
-        if(PlayerPrefs.HasKey("VehicleSpoilerColourPref"))
+        if(PlayerPrefs.HasKey(VehicleSpoilerPref))
         {
             Debug.Log("FIRST RUN THROUGH");
             ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString("VehicleSpoilerColourPref"), out partColour);

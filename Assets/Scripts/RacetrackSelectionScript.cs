@@ -22,17 +22,7 @@ public class RacetrackSelectionScript : MonoBehaviour
         mapSelectionIndex = 2;
         PlayerPrefs.SetInt(MapSelectionPref, mapSelectionIndex);
     }
-    /*
-    public void RacetrackSelection_3()
-    {
-        
-    }
 
-    public void RacetrackSelection_3()
-    {
-        
-    }
-    */
     public void GoToMap()
     {
         mapSelectionIndex = PlayerPrefs.GetInt(MapSelectionPref);

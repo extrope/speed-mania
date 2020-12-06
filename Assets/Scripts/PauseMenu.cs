@@ -51,4 +51,13 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ResetRace()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+        GameIsPaused = false;
+    }
 }
