@@ -7,7 +7,7 @@ public class RacetrackSelectionScript : MonoBehaviour
 {
     public void GoToMap()
     {
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene("Map2");
     }
 /*
     public void RacetrackSelection_1()
