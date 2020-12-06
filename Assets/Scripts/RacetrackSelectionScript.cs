@@ -38,7 +38,8 @@ public class RacetrackSelectionScript : MonoBehaviour
         mapSelectionIndex = PlayerPrefs.GetInt(MapSelectionPref);
         if(mapSelectionIndex > 0)
         {
-            SceneManager.LoadScene("Map"+ mapSelectionIndex.ToString());
+			RaceSystem.mapIndex = mapSelectionIndex - 1;
+            SceneManager.LoadScene("Race");
         }
         else
         {
