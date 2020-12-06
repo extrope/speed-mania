@@ -23,7 +23,7 @@ public class Car : MonoBehaviour {
 	public Motion motionMaximum;
 	public Motion motionCurrent;
 	
-	void Start() {
+	protected void Start() {
 		this.gameObject.GetOnlyComponent<Rigidbody>().centerOfMass =
 			this.gameObject.GetChild("Center of Mass").transform.localPosition;
 	}

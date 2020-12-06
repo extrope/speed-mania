@@ -4,12 +4,42 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public static class Extensions {
+	public static UnityEngine.SceneManagement.Scene GetActiveScene() {
+		return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+	}
+	
+	public static GameObject[] GetTopObjects() {
+		return GetActiveScene().GetRootGameObjects();
+	}
+	
+	public static IEnumerable<GameObject> GetTopObjects(string name) {
+		foreach (var rootObject in GetTopObjects()) {
+			if (rootObject.name == name) {
+				yield return rootObject;
+			}
+		}
+	}
+	
+	public static GameObject GetTopObject(string name) {
+		return AssertX.One(GetTopObjects(name));
+	}
+	
+	public static GameObject GetObject(string topName, params string[] path) {
+		var top = GetTopObject(topName);
+		return top.GetDescendant(path);
+	}
+	
 	public static T GetOnlyComponent<T>(this GameObject gameObject) {
 		return AssertX.One(gameObject.GetComponents<T>());
 	}
 	
 	public static GameObject GetParent(this GameObject gameObject) {
 		return AssertX.NotNull(gameObject.transform.parent).gameObject;
+	}
+	
+	public static GameObject TryGetParent(this GameObject gameObject) {
+		var transform = gameObject.transform.parent;
+		return transform == null ? null : transform.gameObject;
 	}
 	
 	public static GameObject GetAncestor(this GameObject gameObject, uint levels) {
