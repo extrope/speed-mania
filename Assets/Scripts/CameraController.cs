@@ -39,7 +39,8 @@ public class CameraController : MonoBehaviour
     //changes the current primary camera and the position of the camera
     private void cameraBehavior(){
         Vector3 velocity = Vector3.zero;
-        transform.position = Vector3.SmoothDamp(transform.position,camLocations[locationIndicator].transform.position,ref velocity,smothTime * Time.deltaTime);
+        // change 0 to create following affect
+        transform.position = Vector3.SmoothDamp(transform.position,camLocations[locationIndicator].transform.position,ref velocity,0 * Time.deltaTime);
         transform.LookAt(camLocations[1].transform);
     }
 
