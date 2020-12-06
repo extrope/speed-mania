@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
     private void cameraBehavior(){
         Vector3 velocity = Vector3.zero;
         // change 0 to create following affect
-        transform.position = Vector3.SmoothDamp(transform.position,camLocations[locationIndicator].transform.position,ref velocity,0 * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position,camLocations[locationIndicator].transform.position,ref velocity,smothTime * Time.deltaTime);
         transform.LookAt(camLocations[1].transform);
     }
 
