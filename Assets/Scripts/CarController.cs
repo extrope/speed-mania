@@ -12,11 +12,17 @@ public class CarController : Car {
 	private int pathCollided;
 	private float straySince;
 	
+	private GameObject debugWheel;
+	private Quaternion lastRotation;
+	
 	new void Start() {
 		base.Start();
 		this.path = Extensions.GetObject("Map", "Paths", "Player");
 		this.strayUI = Extensions.GetObject("UI", "Stray", "Base");
 		this.strayText = this.strayUI.GetChild("Countdown").GetOnlyComponent<Text>();
+		
+		//this.debugWheel = this.gameObject.GetDescendant("Wheels", "Rear", "Left");
+		//this.lastRotation = this.debugWheel.transform.localRotation;
 	}
 	
 	void FixedUpdate() {
@@ -39,6 +45,8 @@ public class CarController : Car {
 			this.straySince = Time.time;
 			this.strayUI.SetActive(false);
 		}
+		
+		//Debug.Log(this.debugWheel.rpm);
 	}
 	
 	void OnTriggerStay(Collider other) {
