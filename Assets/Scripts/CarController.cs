@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class CarController : Car {
 	public float strayLimit;
 	
-	private GameObject path;
+	private RaceSystem system;
 	private GameObject strayUI;
 	private Text strayText;
 	private int pathCollided;
@@ -15,7 +15,7 @@ public class CarController : Car {
 	
 	new void Start() {
 		base.Start();
-		this.path = Extensions.GetObject("Map", "Paths", "Volume");
+		this.system = Extensions.GetObject("System").GetOnlyComponent<RaceSystem>();
 		this.strayUI = Extensions.GetObject("UI", "Stray", "Base");
 		this.strayText = this.strayUI.GetChild("Countdown").GetOnlyComponent<Text>();
 		this.pathCollided = 0;
@@ -54,7 +54,7 @@ public class CarController : Car {
 	}
 	
 	void OnTriggerStay(Collider other) {
-		if (GameObject.ReferenceEquals(other.gameObject.TryGetParent(), this.path)) {
+		if (GameObject.ReferenceEquals(other.gameObject.TryGetParent(), this.system.pathsVolume)) {
 			this.pathCollided += 1;
 		}
 	}
