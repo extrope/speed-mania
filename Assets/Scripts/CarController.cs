@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CarController : Car {
 	public float strayLimit;
@@ -12,23 +13,27 @@ public class CarController : Car {
 	private int pathCollided;
 	private float straySince;
 	
-	private GameObject debugWheel;
-	private Quaternion lastRotation;
-	
 	new void Start() {
 		base.Start();
-		this.path = Extensions.GetObject("Map", "Paths", "Player");
+		this.path = Extensions.GetObject("Map", "Paths", "Volume");
 		this.strayUI = Extensions.GetObject("UI", "Stray", "Base");
 		this.strayText = this.strayUI.GetChild("Countdown").GetOnlyComponent<Text>();
-		
-		//this.debugWheel = this.gameObject.GetDescendant("Wheels", "Rear", "Left");
-		//this.lastRotation = this.debugWheel.transform.localRotation;
+		this.pathCollided = 0;
+		this.straySince = Time.time;
 	}
 	
 	void FixedUpdate() {
+		var velocity = this.gameObject.transform.InverseTransformDirection(rigidbody.velocity).z;
 		var motion = new Motion();
-		motion.power = Input.GetAxis("Vertical");
+		var inputVertical = Input.GetAxis("Vertical");
 		motion.steer = Input.GetAxis("Horizontal");
+		
+		if (velocity * inputVertical >= 0) {
+			motion.power = inputVertical >= 0 ? inputVertical : inputVertical / 2;
+		} else {
+			motion.brake = Mathf.Abs(inputVertical);
+		}
+		
 		this.motionCurrent = motion * this.motionMaximum;
 		
 		if (this.pathCollided == 0) {
@@ -36,7 +41,8 @@ public class CarController : Car {
 			var stray = this.strayLimit - (Time.time - this.straySince);
 			if (stray <= 0) {
 				// TODO: Game Over or whatever
-				UnityEditor.EditorApplication.isPlaying = false;
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+				return;
 			} else {
 				this.strayText.text = Mathf.FloorToInt(stray).ToString();
 			}
@@ -45,8 +51,6 @@ public class CarController : Car {
 			this.straySince = Time.time;
 			this.strayUI.SetActive(false);
 		}
-		
-		//Debug.Log(this.debugWheel.rpm);
 	}
 	
 	void OnTriggerStay(Collider other) {

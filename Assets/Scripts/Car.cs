@@ -18,13 +18,14 @@ public class Car : MonoBehaviour {
 		public float steer;
 	}
 	
-	new private Rigidbody rigidbody;
+	new protected Rigidbody rigidbody;
 	
 	public Motion motionMaximum;
 	public Motion motionCurrent;
 	
 	protected void Start() {
-		this.gameObject.GetOnlyComponent<Rigidbody>().centerOfMass =
+		this.rigidbody = this.gameObject.GetOnlyComponent<Rigidbody>();
+		this.rigidbody.centerOfMass =
 			this.gameObject.GetChild("Center of Mass").transform.localPosition;
 	}
 }

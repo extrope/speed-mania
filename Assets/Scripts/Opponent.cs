@@ -6,6 +6,4 @@ public class Opponent : Car {
 	new void Start() {
 		base.Start();
 	}
-	
-	
 }
