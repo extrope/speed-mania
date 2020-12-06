@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Wheel : MonoBehaviour {
+	public float velocity;
+	
 	private WheelPair pair;
 	
 	new private Transform transform;
