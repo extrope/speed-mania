@@ -5214,6 +5214,9 @@ MonoBehaviour:
     brake: 0
     steer: 0
   strayLimit: 6
+  vehicleBody: {fileID: 4040716586586596200}
+  vehicleTire: {fileID: 4039981462719871704}
+  vehicleSpoiler: {fileID: 4040755629044769146}
 --- !u!1 &4054397085627889426
 GameObject:
   m_ObjectHideFlags: 0
