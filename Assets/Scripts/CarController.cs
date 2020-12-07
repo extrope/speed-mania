@@ -12,36 +12,37 @@ public class CarController : Car {
 	private Text strayText;
 	private int pathCollided;
 	private float straySince;
+	
 	// Loading objects for colour change
-    public MeshRenderer vehicleBody;
-    public MeshRenderer vehicleTire;
-    public MeshRenderer vehicleSpoiler;
+	public MeshRenderer vehicleBody;
+	public MeshRenderer vehicleTire;
+	public MeshRenderer vehicleSpoiler;
+	
 	private MeshRenderer vehiclePart;
 	private Color partColour;
 	private string[] VehicleColourPref = new string[3];	
 	
 	new void Start() {	
-	
- 		VehicleColourPref[0] = "VehicleBody";
-		VehicleColourPref[1] = "VehicleTire";
-		VehicleColourPref[2] = "VehicleSpoiler";		
-
-		// Load vehicle RGB values			
-        for (int i = 0; i < VehicleColourPref.Length; i++)
-		{
-			if(i == 0){vehiclePart = vehicleBody;}
-			if(i == 1){vehiclePart = vehicleTire;}
-			if(i == 2){vehiclePart = vehicleSpoiler;}
-			SaveRGBValue(VehicleColourPref[i], vehiclePart);
-		}
-		
-
 		base.Start();
+		
 		this.system = Extensions.GetObject("System").GetOnlyComponent<RaceSystem>();
 		this.strayUI = Extensions.GetObject("UI", "Stray", "Base");
 		this.strayText = this.strayUI.GetChild("Countdown").GetOnlyComponent<Text>();
 		this.pathCollided = 0;
 		this.straySince = Time.time;
+		
+		VehicleColourPref[0] = "VehicleBody";
+		VehicleColourPref[1] = "VehicleTire";
+		VehicleColourPref[2] = "VehicleSpoiler";		
+		
+		// Load vehicle RGB values	
+		
+		for (int i = 0; i < VehicleColourPref.Length; i++) {
+			if (i == 0) vehiclePart = vehicleBody;
+			if (i == 1) vehiclePart = vehicleTire;
+			if (i == 2) vehiclePart = vehicleSpoiler;
+			SaveRGBValue(VehicleColourPref[i], vehiclePart);
+		}
 	}
 	
 	void FixedUpdate() {
@@ -80,13 +81,13 @@ public class CarController : Car {
 			this.pathCollided += 1;
 		}
 	}
+	
 	// Load RGB values to vehicle
-	void SaveRGBValue(string bodyPart, MeshRenderer vehiclePart)
-	{
+	void SaveRGBValue(string bodyPart, MeshRenderer vehiclePart) {
 		// Get PlayerPrefs Colours for Vehicle
 		ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString(bodyPart+"ColourPref"), out partColour);
 		// Set Vehicle colour value
-		vehiclePart.material.color = partColour;        
+		vehiclePart.material.color = partColour;		
 		vehiclePart.material.SetColor("_EmmisionColor", partColour);
 	}
 }
