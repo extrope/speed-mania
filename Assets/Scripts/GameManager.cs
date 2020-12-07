@@ -7,10 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     
-    public GameObject FinishText;
-    public GameObject MenuButton;
-    public GameObject NextMapButton;
-
+  
+    public GameObject Finish;
 
     void awake()
     {
@@ -24,9 +22,8 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
-        FinishText.SetActive(true);
-        NextMapButton.SetActive(true);
-        MenuButton.SetActive(true);
+
+        Finish.SetActive(true);
         Time.timeScale = 0.5f;
     }
 
