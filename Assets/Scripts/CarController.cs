@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class CarController : Car {
 	public float strayLimit;
+	public AudioClip soundIdle;
+	public AudioClip soundPower;
 	
+	private AudioSource audioSource;
 	private RaceSystem system;
 	private GameObject strayUI;
 	private Text strayText;
@@ -25,6 +28,8 @@ public class CarController : Car {
 	new void Start() {	
 		base.Start();
 		
+		this.audioSource = this.gameObject.GetOnlyComponent<AudioSource>();
+		this.audioSource.clip = this.soundIdle;
 		this.system = Extensions.GetObject("System").GetOnlyComponent<RaceSystem>();
 		this.strayUI = Extensions.GetObject("UI", "Stray", "Base");
 		this.strayText = this.strayUI.GetChild("Countdown").GetOnlyComponent<Text>();
@@ -51,12 +56,19 @@ public class CarController : Car {
 		var inputVertical = Input.GetAxis("Vertical");
 		motion.steer = Input.GetAxis("Horizontal");
 		
+		var audio = this.soundIdle;
+		
 		if (velocity * inputVertical >= 0) {
+			if (inputVertical > 0) {
+				audio = this.soundPower;
+			}
+			
 			motion.power = inputVertical >= 0 ? inputVertical : inputVertical / 2;
 		} else {
 			motion.brake = Mathf.Abs(inputVertical);
 		}
 		
+		this.audioSource.clip = audio;
 		this.motionCurrent = motion * this.motionMaximum;
 		
 		if (this.system.pathsVolume != null) {
@@ -91,7 +103,7 @@ public class CarController : Car {
 		// Get PlayerPrefs Colours for Vehicle
 		ColorUtility.TryParseHtmlString("#" + PlayerPrefs.GetString(bodyPart+"ColourPref"), out partColour);
 		// Set Vehicle colour value
-		vehiclePart.material.color = partColour;		
+		vehiclePart.material.color = partColour;
 		vehiclePart.material.SetColor("_EmmisionColor", partColour);
 	}
 }
