@@ -70,6 +70,8 @@ public class CarController : Car {
 		
 		if (this.audioSource.clip != audio) {
 			this.audioSource.clip = audio;
+			this.audioSource.loop = true;
+			this.audioSource.Play();
 		}
 		
 		this.motionCurrent = motion * this.motionMaximum;

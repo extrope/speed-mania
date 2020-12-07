@@ -6262,6 +6262,8 @@ MonoBehaviour:
     brake: 0
     steer: 0
   strayLimit: 6
+  soundIdle: {fileID: 8300000, guid: c502041826854664683f9914f63427b0, type: 3}
+  soundPower: {fileID: 8300000, guid: bb683044c23cd50438d45fe475089c84, type: 3}
   vehicleBody: {fileID: 4040716586586596200}
   vehicleTire: {fileID: 4039981462719871704}
   vehicleSpoiler: {fileID: 4040755629044769146}
@@ -6277,7 +6279,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c502041826854664683f9914f63427b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.457
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
