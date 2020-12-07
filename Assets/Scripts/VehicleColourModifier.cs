@@ -5,25 +5,26 @@ using UnityEngine.UI;
 
 public class VehicleColourModifier : MonoBehaviour
 {
+    // Vehicle to be saved
+    public GameObject vehicle;
+    // String variables for saving preference of vehicle colour
     private static readonly string VehicleBodyColourPref = "VehicleBodyColourPref";
     private static readonly string VehicleTireColourPref = "VehicleTireColourPref";
     private static readonly string VehicleSpoilerPref = "VehicleSpoilerColourPref";
+            
+    // Variable creation for; Body part Index,  colour holder, RGB holders
+    private int partSelected;
     private Color partColour;
-    
-
-    
-    
-    int partSelected;
     private string partName;
     private float Red;
     private float Green;
     private float Blue;
-    
+    // Setting the parts of the vehicle that are to change colour
     private MeshRenderer bodyPart;
     public MeshRenderer vehicleBody;
     public MeshRenderer vehicleTire;
     public MeshRenderer vehicleSpoiler;
-    //public MeshRenderer vehicle;
+    // Setting the sliders that will change the RGB values
     public Slider red;
     public Slider green;
     public Slider blue;
@@ -31,7 +32,7 @@ public class VehicleColourModifier : MonoBehaviour
     public void Start()
     {
 
-        // Run if not first run through
+        // Run if not first time customising vehicle body
         if(PlayerPrefs.HasKey(VehicleBodyColourPref))        
         {
             bodyPart = vehicleBody;
@@ -51,7 +52,7 @@ public class VehicleColourModifier : MonoBehaviour
             blue.value = Blue;
         }
 
-        // Run if first time customising Tire colour
+        // Run if not first time customising Tire colour
         if(PlayerPrefs.HasKey(VehicleTireColourPref))
         {
             Debug.Log("FIRST RUN THROUGH");
@@ -61,7 +62,7 @@ public class VehicleColourModifier : MonoBehaviour
             vehicleTire.material.SetColor("_EmmisionColor", partColour);
         }
 
-        // Run if first time customising Spoiler colour
+        // Run if not first time customising Spoiler colour
         if(PlayerPrefs.HasKey(VehicleSpoilerPref))
         {
             Debug.Log("FIRST RUN THROUGH");
@@ -149,5 +150,10 @@ public class VehicleColourModifier : MonoBehaviour
         red.value = Red;
         green.value = Green;
         blue.value = Blue;
+    }
+
+    public void DontDestroyVehicle()
+    {
+        DontDestroyOnLoad(vehicle);
     }
 }
