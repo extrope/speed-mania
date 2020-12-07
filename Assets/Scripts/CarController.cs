@@ -68,7 +68,10 @@ public class CarController : Car {
 			motion.brake = Mathf.Abs(inputVertical);
 		}
 		
-		this.audioSource.clip = audio;
+		if (this.audioSource.clip != audio) {
+			this.audioSource.clip = audio;
+		}
+		
 		this.motionCurrent = motion * this.motionMaximum;
 		
 		if (this.system.pathsVolume != null) {
