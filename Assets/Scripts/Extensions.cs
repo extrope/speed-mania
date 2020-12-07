@@ -25,7 +25,7 @@ public static class Extensions {
 	}
 	
 	public static GameObject GetObject(string topName, params string[] path) {
-		var top = GetTopObject(topName);
+		var top = AssertX.NotNull(GetTopObject(topName));
 		return top.GetDescendant(path);
 	}
 	

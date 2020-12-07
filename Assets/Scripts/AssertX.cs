@@ -16,7 +16,8 @@ public static class AssertX {
 	}
 	
 	public static T One<T>(IEnumerator<T> enumerator) {
-		Assert.IsTrue(enumerator.MoveNext());
+		var hasFirst = enumerator.MoveNext();
+		Assert.IsTrue(hasFirst);
 		var value = enumerator.Current;
 		Assert.IsFalse(enumerator.MoveNext());
 		return value;
