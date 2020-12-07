@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Start : MonoBehaviour
-{
-    void OnTriggerEnter()
-    {
-        TimerController.instance.BeginTimer();
-    }
+public class Start : MonoBehaviour {
+	void OnTriggerEnter() {
+		Extensions.GetObject("TimeController").GetOnlyComponent<TimerController>().BeginTimer();
+	}
 }

@@ -23,7 +23,6 @@ public class RaceSystem : MonoBehaviour {
 	
 	void StartPlayer() {
 		var gameObject = Extensions.GetObject("Car");
-		Debug.Log(gameObject == null);
 		var transform = gameObject.transform;
 		var start = this.map.GetChild("Start Point").transform;
 		transform.position = start.position;
