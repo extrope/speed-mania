@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicle: {fileID: 0}
   vehicleBody: {fileID: 397981597}
-  vehicleTire: {fileID: 1267902682}
+  vehicleTire: {fileID: 980515612}
   vehicleSpoiler: {fileID: 31704886}
   red: {fileID: 1966990761}
   green: {fileID: 300202318}
@@ -5643,6 +5643,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &980515612 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4125727455291431025, guid: 6df537c467f1fdc4d917a52151555b79,
+    type: 3}
+  m_PrefabInstance: {fileID: 1413160792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &993981217
 GameObject:
   m_ObjectHideFlags: 0
@@ -7485,12 +7491,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265684078}
   m_CullTransparentMesh: 0
---- !u!23 &1267902682 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4126991601221702673, guid: 6df537c467f1fdc4d917a52151555b79,
-    type: 3}
-  m_PrefabInstance: {fileID: 1413160792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1319335931
 GameObject:
   m_ObjectHideFlags: 0
