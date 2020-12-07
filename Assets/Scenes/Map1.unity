@@ -16411,7 +16411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationIndicator: 2
-  smothTime: 1.2
+  smothTime: 0
 --- !u!1001 &1804359607
 PrefabInstance:
   m_ObjectHideFlags: 0
