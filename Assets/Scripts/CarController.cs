@@ -59,26 +59,30 @@ public class CarController : Car {
 		
 		this.motionCurrent = motion * this.motionMaximum;
 		
-		if (this.pathCollided == 0) {
-			this.strayUI.SetActive(true);
-			var stray = this.strayLimit - (Time.time - this.straySince);
-			if (stray <= 0) {
-				// TODO: Game Over or whatever
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-				return;
+		if (this.system.pathsVolume != null) {
+			if (this.pathCollided == 0) {
+				this.strayUI.SetActive(true);
+				var stray = this.strayLimit - (Time.time - this.straySince);
+				if (stray <= 0) {
+					// TODO: Game Over or whatever
+					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+					return;
+				} else {
+					this.strayText.text = Mathf.FloorToInt(stray).ToString();
+				}
 			} else {
-				this.strayText.text = Mathf.FloorToInt(stray).ToString();
+				this.pathCollided = 0;
+				this.straySince = Time.time;
+				this.strayUI.SetActive(false);
 			}
-		} else {
-			this.pathCollided = 0;
-			this.straySince = Time.time;
-			this.strayUI.SetActive(false);
 		}
 	}
 	
 	void OnTriggerStay(Collider other) {
-		if (GameObject.ReferenceEquals(other.gameObject.TryGetParent(), this.system.pathsVolume)) {
-			this.pathCollided += 1;
+		if (this.system.pathsVolume != null) {
+			if (GameObject.ReferenceEquals(other.gameObject.TryGetParent(), this.system.pathsVolume)) {
+				this.pathCollided += 1;
+			}
 		}
 	}
 	

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class RaceSystem : MonoBehaviour {
 	public static int mapIndex = 0;
@@ -17,7 +18,13 @@ public class RaceSystem : MonoBehaviour {
 	void StartMap() {
 		var gameObject = Instantiate<GameObject>(Resources.Load<GameObject>("Maps/" + mapIndex.ToString()));
 		gameObject.name = "Map";
-		this.pathsVolume = gameObject.GetDescendant("Paths", "Volume");
+		
+		try {
+			this.pathsVolume = gameObject.GetDescendant("Paths", "Volume");
+		} catch (AssertionException) {
+			this.pathsVolume = null;
+		}
+		
 		this.map = gameObject;
 	}
 	
