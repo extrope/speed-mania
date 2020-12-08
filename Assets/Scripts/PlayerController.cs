@@ -10,13 +10,15 @@ public class PlayerController : Car {
 		public AudioSource source = null;
 		[Range(-3f, +3f)]
 		public float idle = 0.5f;
-		public float rate = 500f;
+		public float rate = 1500f;
+		[Range(-3f, +3f)]
+		public float limit = 1.5f;
 	}
 	
 	[SerializeField] private RaceSystem system = null;
 	[SerializeField] private WheelCollider[] wheelColliders = null;
 	[SerializeField] new private Audio audio = null;
-	[SerializeField] private float rpmDampening = 0.75f;
+	[SerializeField] private float rpmDampening = 0.9f;
 	
 	public float Rpm { get; private set; }
 	
@@ -105,7 +107,8 @@ public class PlayerController : Car {
 	}
 	
 	void UpdateSounds() {
-		this.audio.source.pitch = this.audio.idle + (this.Rpm / this.audio.rate);
+		var pitch = this.audio.idle + (this.Rpm / this.audio.rate);
+		this.audio.source.pitch = Mathf.Clamp(pitch, this.audio.idle, this.audio.limit);
 	}
 	
 	void OnTriggerEnter(Collider other) {

@@ -3145,7 +3145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overlay:
-    finish: {fileID: 0}
+    finish: {fileID: 1779580979}
     pause: {fileID: 704695430}
     stray: {fileID: 1665477753}
     strayCount: {fileID: 1199772070}
@@ -7208,6 +7208,7 @@ MonoBehaviour:
     source: {fileID: 4054076383475246787}
     idle: 0.5
     rate: 1500
+    limit: 1.25
   rpmDampening: 0.9
   vehicleBody: {fileID: 4040716586586596200}
   vehicleTire: {fileID: 4039981462719871704}

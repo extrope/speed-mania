@@ -120,7 +120,7 @@ public class RaceSystem : MonoBehaviour {
 	}
 	
 	public void CheckStray() {
-		if (this.map.path == null) {
+		if (this.map.path == null || this.phase == Phase.FINISHED) {
 			return;
 		}
 		
@@ -168,6 +168,9 @@ public class RaceSystem : MonoBehaviour {
 	
 	public void TriggerFinish() {
 		this.phase = Phase.FINISHED;
+		var overlay = this.overlay;
+		overlay.finish.SetActive(true);
+		overlay.shadow.SetActive(true);
 	}
 	
 	public void Pause() {
