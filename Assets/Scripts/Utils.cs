@@ -39,6 +39,10 @@ public static class Utils {
 		return (first, enumerator);
 	}
 	
+	public static (T first, IEnumerator<T> rest) FirstRest<T>(this IEnumerable<T> enumerable) {
+		return FirstRest(enumerable.GetEnumerator());
+	}
+	
 	public static void ForEach<T>(this IEnumerator<T> enumerator, Action<T> callback) {
 		while (enumerator.MoveNext()) {
 			callback(enumerator.Current);

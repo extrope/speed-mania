@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FinishEvent : MonoBehaviour {
 	void OnTriggerEnter() {
-		Extensions.GetObject("TimeController").GetOnlyComponent<TimerController>().EndTimer();
-		Extensions.GetObject("GameManager").GetComponent<GameManager>().Win();
+		Extra.GetRootObject("TimeController").GetOnlyComponent<TimerController>().EndTimer();
+		Extra.GetRootObject("GameManager").GetComponent<GameManager>().Win();
 	}
 }

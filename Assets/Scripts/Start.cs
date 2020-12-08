@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Start : MonoBehaviour {
 	void OnTriggerEnter() {
-		Extensions.GetObject("TimeController").GetOnlyComponent<TimerController>().BeginTimer();
+		// Extra.GetObject("TimeController").GetOnlyComponent<TimerController>().BeginTimer();
 	}
 }

@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     
     //assign empty objects with real game objects and get the location of each camera
     private void Start() {
-        vehicle = Extensions.GetObject("Car");
+        vehicle = Extra.GetObject("Player");
         cameras = vehicle.transform.Find("Camera").gameObject;
         camLocations = cameras.GetComponentsInChildren<Transform>();
     }
